@@ -1,0 +1,12 @@
+{
+  "C_Cpp.intelliSenseEngine": "Tag Parser",
+  "files.associations": {
+    "sdkconfig.h": "c",
+    "esp_log.h": "c",
+    "task.h": "c",
+    "freertos.h": "c"
+  },
+  "idf.portWin": "COM3",
+  "idf.flashType": "JTAG",
+  "idf.adapterTargetName": "esp32"
+}

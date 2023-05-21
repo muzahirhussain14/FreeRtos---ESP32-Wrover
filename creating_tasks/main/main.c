@@ -1,3 +1,5 @@
+// Reference:  https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/system/freertos_idf.html#_CPPv423xTaskCreatePinnedToCore14TaskFunction_tPCKcK22configSTACK_DEPTH_TYPEPCv11UBaseType_tPC12TaskHandle_tK10BaseType_t
+
 #include <stdio.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
@@ -43,6 +45,7 @@ TaskHandle_t create_task (void (*task_to_run)())
     // the new task attempts to access it.
     
     // This function is similar to xTaskCreate (used for single core controllers), but allows setting task affinity in SMP (Symmetric Multiprocessing) system.
+    // This task will be pinned to core 0 (last parameter). If you don't want to specify the affinity pass tskNO_AFFINITY in the last parameter.
     xTaskCreatePinnedToCore (task_to_run, "On Led", STACK_SIZE, &ucParameterToPass, tskIDLE_PRIORITY, &xHandle, 0);
     configASSERT( xHandle );
 
@@ -61,7 +64,7 @@ void app_main(void)
         // create a task to turn on an led
 
         xHandle = create_task(on_led);
-        vTaskDelay(pdMS_TO_TICKS(5000));          // wait for 5 seconds and then delete this task
+        vTaskDelay(pdMS_TO_TICKS(5000));          // Delay a task for a given number of ticks (5000 ticks = 5 seconds)
 
         if( xHandle != NULL )
         {
@@ -72,7 +75,7 @@ void app_main(void)
 
         // create a second task to turn off the led
         xHandle = create_task(off_led);
-        vTaskDelay(pdMS_TO_TICKS(5000));          // wait for 5 seconds and then delete this task
+        vTaskDelay(pdMS_TO_TICKS(5000));          // Delay this task for 5 seconds and then delete this task
 
         if( xHandle != NULL )
         {
