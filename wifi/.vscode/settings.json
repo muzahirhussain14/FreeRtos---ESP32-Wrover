@@ -1,0 +1,15 @@
+{
+  "C_Cpp.intelliSenseEngine": "Tag Parser",
+  "files.associations": {
+    "task.h": "c",
+    "esp_log.h": "c",
+    "esp_event.h": "c",
+    "netfwd": "cpp",
+    "esp_wifi.h": "c",
+    "esp_netif.h": "c",
+    "nvs_flash.h": "c"
+  },
+  "idf.adapterTargetName": "esp32",
+  "idf.portWin": "COM3",
+  "idf.flashType": "UART"
+}
